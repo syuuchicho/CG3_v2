@@ -39,6 +39,8 @@ void Light::Initialize()
 		IID_PPV_ARGS(&constBuff));
 	assert(SUCCEEDED(result));
 
+	
+
 	//定数バッファへデータ転送
 	TransferConstBuffer();
 }
@@ -57,16 +59,17 @@ void Light::TransferConstBuffer()
 	}
 }
 
-void Light::SetLightColor(const XMFLOAT3& lightcolor)
-{
-	this->lightcolor = lightcolor;
-	dirty = true;
-}
 
 void Light::SetLightDir(const XMVECTOR& lightdir)
 {
 	//正規化してセット
 	this->lightdir = XMVector3Normalize(lightdir);
+	dirty = true;
+}
+
+void Light::SetLightColor(const XMFLOAT3& lightcolor)
+{
+	this->lightcolor = lightcolor;
 	dirty = true;
 }
 
