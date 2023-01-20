@@ -8,6 +8,8 @@
 #include <string>
 #include "Model.h"
 #include "Camera.h"
+#include "Light.h"
+
 
 /// <summary>
 /// 3Dオブジェクト
@@ -37,7 +39,9 @@ public: // サブクラス
 	// 定数バッファ用データ構造体B0
 	struct ConstBufferDataB0
 	{
-		XMMATRIX mat;	// ３Ｄ変換行列
+		XMMATRIX viewproj;//ビュープロジェクション行列
+		XMMATRIX world;//ワールド行列
+		XMFLOAT3 cameraPos;//カメラ座標(ワールド座標)
 	};
 
 private: // 定数
@@ -60,7 +64,7 @@ public: // 静的メンバ関数
 	/// カメラのセット
 	/// </summary>
 	/// <param name="camera">カメラ</param>
-	static void SetCamera(Camera* camera) { sCamera_ = camera; }
+	static void SetCamera(Camera* camera) { sCamera_= camera; }
 
 	/// <summary>
 	/// 描画前処理
@@ -79,15 +83,30 @@ public: // 静的メンバ関数
 	/// <returns></returns>
 	static Object3d* Create();
 
+	/// <summary>
+	/// ライトのセット
+	/// </summary>
+	/// <param name="light">ライト</param>
+	static void SetLight(Light* light) {
+		Object3d::light = light;
+	}
+
 private: // 静的メンバ変数
+
 	// デバイス
 	static ID3D12Device* device;
+
 	// コマンドリスト
 	static ID3D12GraphicsCommandList* sCommandList;
+
 	// テクスチャあり用パイプライン
 	static PipelineSet pipelineSet;
+
 	// カメラ
 	static Camera* sCamera_;
+
+	//ライト
+	static Light* light;
 
 public: // メンバ関数
 	bool Initialize();
@@ -128,6 +147,12 @@ public: // メンバ関数
 	void SetModel(Model* model) { this->model = model; }
 
 	void SetBillboard(bool isBillboard) { this->isBillboard = isBillboard; }
+
+	/// <summary>
+	/// 回転角の取得
+	/// </summary>
+	/// <returns>回転角</returns>
+	const XMFLOAT3& GetRotation() { return rotation; }
 
 private: // メンバ変数
 	ComPtr<ID3D12Resource> constBuffB0; // 定数バッファ

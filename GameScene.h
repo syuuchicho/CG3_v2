@@ -6,6 +6,7 @@
 #include "Input.h"
 #include "Object3d.h"
 #include "Sprite.h"
+#include "Light.h"
 #include <DirectXMath.h>
 
 /// <summary>
@@ -60,6 +61,7 @@ class GameScene {
 	/// ゲームシーン用
 	/// </summary>
 	Sprite* spriteBG = nullptr;
+	Light* light = nullptr;
 
 	Model* modelSkydome = nullptr;
 	Model* modelGround = nullptr;
