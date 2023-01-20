@@ -32,8 +32,6 @@ VSOutput main(float4 pos : POSITION, float3 normal : NORMAL, float2 uv : TEXCOOR
 
 	//全て加算する
 	output.color.rgb = (ambient + diffuse + specular) * lightcolor;
-	//output.color.rgb =dot(-lightv,normal)*m_diffuse* lightcolor;
-
 	output.color.a = m_alpha;
 	output.uv = uv;
 	//output.normal = normal;
