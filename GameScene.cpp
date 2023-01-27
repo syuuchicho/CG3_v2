@@ -21,7 +21,7 @@ GameScene::~GameScene()
 	delete modelFighter;
 	delete modelSphere;
 	delete camera;
-	delete light;
+	delete lightGroup;
 }
 
 void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
@@ -60,11 +60,9 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 	objSphere = Object3d::Create();
 
 	//ライト生成
-	light = DirectionalLight::Create();
-	//ライト色を設定
-	light->SetLightColor({ 1,1,1 });
+	lightGroup = LightGroup::Create();
 	//3Dオブジェクトにライトをセット
-	Object3d::SetLight(light);
+	Object3d::SetLightGroup(lightGroup);
 
 	// テクスチャ2番に読み込み
 	Sprite::LoadTexture(2, L"Resources/texture.png");
@@ -88,7 +86,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 void GameScene::Update()
 {
 	camera->Update();
-	light->Update();
+	lightGroup->Update();
 
 	objSkydome->Update();
 	objGround->Update();
@@ -122,7 +120,7 @@ void GameScene::Update()
 		lightDir.m128_f32[0] -= 1.0f;
 	}
 
-	light->SetLightDir(lightDir);
+	//lightGroup->SetLightDir(lightDir);
 
 	std::ostringstream debugstr;
 	debugstr << "lightDirFactor("

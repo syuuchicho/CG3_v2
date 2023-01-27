@@ -84,11 +84,11 @@ public: // 静的メンバ関数
 	static Object3d* Create();
 
 	/// <summary>
-	/// ライトのセット
+	/// ライトグループのセット
 	/// </summary>
 	/// <param name="light">ライト</param>
-	static void SetLight(DirectionalLight* light) {
-		Object3d::light = light;
+	static void SetLightGroup(LightGroup* lightGroup) {
+		Object3d::lightGroup = lightGroup;
 	}
 
 private: // 静的メンバ変数
@@ -106,7 +106,7 @@ private: // 静的メンバ変数
 	static Camera* sCamera_;
 
 	//ライト
-	static DirectionalLight* light;
+	static LightGroup* lightGroup;
 
 public: // メンバ関数
 	bool Initialize();
