@@ -8,7 +8,7 @@
 #include <string>
 #include "Model.h"
 #include "Camera.h"
-#include "DirectionalLight.h"
+#include "LightGroup.h"
 
 
 /// <summary>

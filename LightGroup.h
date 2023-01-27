@@ -59,7 +59,7 @@ public://メンバー関数
 	/// </summary>
 	void TransferConstBuffer();
 
-	/// <summary>
+	/*/// <summary>
 	/// ライト方向をセット
 	/// </summary>
 	/// <param name="lightcolor">ライト方向</param>
@@ -69,7 +69,39 @@ public://メンバー関数
 	/// ライト色をセット
 	/// </summary>
 	/// <param name="lightcolor">ライト色</param>
-	void SetLightColor(const XMFLOAT3& lightcolor);
+	void SetLightColor(const XMFLOAT3& lightcolor);*/
+
+	/// <summary>
+	/// 環境光のライト色をセット
+	/// </summary>
+	/// <param name="color">ライト色</param>
+	void SetAmbientColor(const XMFLOAT3& color);
+
+	/// <summary>
+	/// 平行光源の有効フラグをセット
+	/// </summary>
+	/// <param name="index">ライト番号</param>
+	/// <param name="active">有効フラグ</param>
+	void SetDirLightActive(int index, bool active);
+
+	/// <summary>
+	/// 平行光源のライト方向をセット
+	/// </summary>
+	/// <param name="index">ライト番号</param>
+	/// <param name="lightdir">ライト方向</param>
+	void SetDirLightDir(int index, const XMVECTOR& lightdir);
+
+	/// <summary>
+	/// 平行光源のライト色をセット
+	/// </summary>
+	/// <param name="index">ライト番号</param>
+	/// <param name="lightcolor">ライト色</param>
+	void SetDirLightColor(int index, const XMFLOAT3& lightcolor);
+
+	/// <summary>
+	/// 標準のライト設定
+	/// </summary>
+	void DefaultLightSetting();
 
 	/// <summary>
 	/// 更新

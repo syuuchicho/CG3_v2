@@ -24,6 +24,7 @@ public://サブクラス
 	{
 		XMVECTOR lightv;		//ライトへの方向を表すベクトル
 		XMFLOAT3 lightcolor;	//ライトの色
+		bool active;			//自作
 	};
 public://静的メンバー関数
 	/// <summary>
@@ -60,11 +61,21 @@ public://メンバー関数
 	void SetLightDir(const XMVECTOR& lightdir);
 
 	/// <summary>
+	/// 自作
+	/// </summary>
+	XMVECTOR GetLightDir();
+
+
+	/// <summary>
 	/// ライト色をセット
 	/// </summary>
 	/// <param name="lightcolor">ライト色</param>
 	void SetLightColor(const XMFLOAT3& lightcolor);
 
+	/// <summary>
+	/// 自作
+	/// </summary>
+	XMFLOAT3 GetLightColor();
 	/// <summary>
 	/// 更新
 	/// </summary>
