@@ -5,7 +5,7 @@
 #include<d3dx12.h>
 
 
-class Light
+class DirectionalLight
 {
 private://エイリアス
 	//Microsoft::WRL::を省略
@@ -36,7 +36,7 @@ public://静的メンバー関数
 	/// インスタンス生成
 	/// </summary>
 	/// <returns></returns>
-	static Light* Create();
+	static DirectionalLight* Create();
 
 private://静的メンバー変数
 	//デバイス
@@ -75,6 +75,17 @@ public://メンバー関数
 	/// </summary>F
 	void Draw(ID3D12GraphicsCommandList*cmdList,UINT rootParameterIndex);
 
+	/// <summary>
+	/// 有効フラグをセット
+	/// </summary>
+	/// <param name="active">有効フラグ</param>
+	inline void SetActive(bool active) { this->active = active; }
+
+	/// <summary>
+	/// 有効チェック
+	/// </summary>
+	/// <returns>有効フラグ</returns>
+	inline bool IsActive() { return active; }
 private://メンバ変数
 	//定数バッファ
 	ComPtr<ID3D12Resource>constBuff;
@@ -84,6 +95,7 @@ private://メンバ変数
 	XMFLOAT3 lightcolor = { 1,1,1 };
 	//ダーティフラグ
 	bool dirty = false;
-
+	//有効フラグ
+	bool active = false;
 };
 

@@ -8,7 +8,7 @@
 #include <string>
 #include "Model.h"
 #include "Camera.h"
-#include "Light.h"
+#include "DirectionalLight.h"
 
 
 /// <summary>
@@ -87,7 +87,7 @@ public: // 静的メンバ関数
 	/// ライトのセット
 	/// </summary>
 	/// <param name="light">ライト</param>
-	static void SetLight(Light* light) {
+	static void SetLight(DirectionalLight* light) {
 		Object3d::light = light;
 	}
 
@@ -106,7 +106,7 @@ private: // 静的メンバ変数
 	static Camera* sCamera_;
 
 	//ライト
-	static Light* light;
+	static DirectionalLight* light;
 
 public: // メンバ関数
 	bool Initialize();
