@@ -3,6 +3,7 @@
 #include <cassert>
 #include <sstream>
 #include <iomanip>
+#include<imgui.h>
 
 using namespace DirectX;
 
@@ -140,14 +141,35 @@ void GameScene::Update()
 		<< cameraPos.z << ")";
 	debugText.Print(debugstr.str(), 50, 70, 1.0f);
 
-
 	/*debugText.Print("AD: move camera LeftRight", 50, 50, 1.0f);
 	debugText.Print("WS: move camera UpDown", 50, 70, 1.0f);
 	debugText.Print("ARROW: move camera FrontBack", 50, 90, 1.0f);*/
+
+	//imguiからのライトパラメータを反映
+	lightGroup->SetAmbientColor(XMFLOAT3(ambientColor));
+	lightGroup->SetDirLightDir(0, XMVECTOR({ lightDir0[0],lightDir0[1] ,lightDir0[2],0 }));
+	lightGroup->SetDirLightColor(0, XMFLOAT3(lightColor0));
+	lightGroup->SetDirLightDir(1, XMVECTOR({ lightDir0[0],lightDir0[1] ,lightDir0[2],0 }));
+	lightGroup->SetDirLightColor(1, XMFLOAT3(lightColor1));
+	lightGroup->SetDirLightDir(2, XMVECTOR({ lightDir0[0],lightDir0[1] ,lightDir0[2],0 }));
+	lightGroup->SetDirLightColor(2, XMFLOAT3(lightColor2));
 }
 
 void GameScene::Draw()
 {
+	ImGui::Begin("light");
+	ImGui::SetWindowPos(ImVec2( 0,0 ));
+	ImGui::SetWindowSize(ImVec2(500, 200));
+	ImGui::ColorEdit3("ambientColor", ambientColor, ImGuiColorEditFlags_Float);
+	ImGui::InputFloat3("lightDir0", lightDir0);
+	ImGui::ColorEdit3("lightColor0", lightColor0, ImGuiColorEditFlags_Float);
+	ImGui::InputFloat3("lightDir1", lightDir1);
+	ImGui::ColorEdit3("lightColor1", lightColor1, ImGuiColorEditFlags_Float);
+	ImGui::InputFloat3("lightDir2", lightDir2);
+	ImGui::ColorEdit3("lightColor2", lightColor2, ImGuiColorEditFlags_Float);
+	ImGui::End();
+
+
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* cmdList = dxCommon->GetCommandList();
 
