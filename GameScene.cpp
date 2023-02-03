@@ -17,10 +17,13 @@ GameScene::~GameScene()
 	delete objSkydome;
 	delete objGround;
 	delete objFighter;
+	delete objSphere;
+	delete objSphere2;
 	delete modelSkydome;
 	delete modelGround;
 	delete modelFighter;
 	delete modelSphere;
+	delete modelSphere2;
 	delete camera;
 	delete lightGroup;
 }
@@ -59,6 +62,8 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 	objGround = Object3d::Create();
 	objFighter = Object3d::Create();
 	objSphere = Object3d::Create();
+	objSphere2 = Object3d::Create();
+
 
 	//ライト生成
 	lightGroup = LightGroup::Create();
@@ -73,14 +78,18 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 	modelFighter = Model::CreateFromOBJ("chr_sword");
 	//modelFighter = Model::CreateFromOBJ("sphere");
 	modelSphere = Model::CreateFromOBJ("sphere", true);
+	modelSphere2= Model::CreateFromOBJ("sphere");
 
 	objSkydome->SetModel(modelSkydome);
 	objGround->SetModel(modelGround);
 	objFighter->SetModel(modelFighter);
 	objSphere->SetModel(modelSphere);
-	objFighter->SetPosition({ +1,0,0 });
+	objSphere2->SetModel(modelSphere2);
+	objFighter->SetPosition({ +1,2,0 });
 	//objFighter->SetPosition({ -1,1,0 });
 	objSphere->SetPosition({ -1,1,0 });
+	objSphere2->SetPosition({ +1,1,0 });
+
 
 }
 
@@ -93,11 +102,14 @@ void GameScene::Update()
 	objGround->Update();
 	objFighter->Update();
 	objSphere->Update();
+	objSphere2->Update();
+
 
 #pragma region オブジェクトの回転
 	XMFLOAT3 rot = objSphere->GetRotation();
 	rot.y += 1.0f;
 	objSphere->SetRotation(rot);
+	objSphere2->SetRotation(rot);
 	objFighter->SetRotation(rot);
 #pragma endregion
 
@@ -198,6 +210,8 @@ void GameScene::Draw()
 	objGround->Draw();
 	objFighter->Draw();
 	objSphere->Draw();
+	objSphere2->Draw();
+
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる

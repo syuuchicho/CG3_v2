@@ -67,11 +67,14 @@ class GameScene {
 	Model* modelGround = nullptr;
 	Model* modelFighter = nullptr;
 	Model* modelSphere = nullptr;
+	Model* modelSphere2 = nullptr;
 
 	Object3d* objSkydome = nullptr;
 	Object3d* objGround = nullptr;
 	Object3d* objFighter = nullptr;
 	Object3d* objSphere = nullptr;
+	Object3d* objSphere2 = nullptr;
+
 
 	float ambientColor[3] = { 1,1,1 };
 	//光線方向初期値
