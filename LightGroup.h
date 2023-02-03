@@ -31,6 +31,7 @@ public://サブクラス
 		//平行光源
 		DirectionalLight::ConstBufferData dirLights[DirLightNum];
 	};
+
 private://静的メンバー変数
 	//デバイス
 	static ID3D12Device* device;

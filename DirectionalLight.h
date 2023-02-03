@@ -24,7 +24,7 @@ public://サブクラス
 	{
 		XMVECTOR lightv;		//ライトへの方向を表すベクトル
 		XMFLOAT3 lightcolor;	//ライトの色
-		bool active;			//自作
+		unsigned int active;	//有効フラグ
 	};
 public://静的メンバー関数
 	/// <summary>

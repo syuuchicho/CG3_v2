@@ -70,17 +70,17 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 
 	modelSkydome = Model::CreateFromOBJ("skydome");
 	modelGround = Model::CreateFromOBJ("ground");
-	//modelFighter = Model::CreateFromOBJ("chr_sword");
-	modelFighter = Model::CreateFromOBJ("sphere");
+	modelFighter = Model::CreateFromOBJ("chr_sword");
+	//modelFighter = Model::CreateFromOBJ("sphere");
 	modelSphere = Model::CreateFromOBJ("sphere", true);
 
 	objSkydome->SetModel(modelSkydome);
 	objGround->SetModel(modelGround);
 	objFighter->SetModel(modelFighter);
 	objSphere->SetModel(modelSphere);
-	//objFighter->SetPosition({ +1,0,0 });
-	objFighter->SetPosition({ -1,1,0 });
-	objSphere->SetPosition({ +1,1,0 });
+	objFighter->SetPosition({ +1,0,0 });
+	//objFighter->SetPosition({ -1,1,0 });
+	objSphere->SetPosition({ -1,1,0 });
 
 }
 
@@ -149,9 +149,9 @@ void GameScene::Update()
 	lightGroup->SetAmbientColor(XMFLOAT3(ambientColor));
 	lightGroup->SetDirLightDir(0, XMVECTOR({ lightDir0[0],lightDir0[1] ,lightDir0[2],0 }));
 	lightGroup->SetDirLightColor(0, XMFLOAT3(lightColor0));
-	lightGroup->SetDirLightDir(1, XMVECTOR({ lightDir0[0],lightDir0[1] ,lightDir0[2],0 }));
+	lightGroup->SetDirLightDir(1, XMVECTOR({ lightDir1[0],lightDir1[1] ,lightDir1[2],0 }));
 	lightGroup->SetDirLightColor(1, XMFLOAT3(lightColor1));
-	lightGroup->SetDirLightDir(2, XMVECTOR({ lightDir0[0],lightDir0[1] ,lightDir0[2],0 }));
+	lightGroup->SetDirLightDir(2, XMVECTOR({ lightDir2[0],lightDir2[1] ,lightDir2[2],0 }));
 	lightGroup->SetDirLightColor(2, XMFLOAT3(lightColor2));
 }
 
